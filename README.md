@@ -1,29 +1,42 @@
 # ###DoDeckSabudh
 
-# Key Features
-Task Lifecycle Management
+###  Key Features
 
-Create tasks with all details (title, description, due date, start/end times).
+- **Task Lifecycle Management**
+  - Create tasks with title, description, due date, start/end times  
+  - Edit or remove existing tasks
 
-Edit existing tasks or remove them entirely.
+- **Automatic Categorization**
+  - **Overdue**: tasks past their end time and not completed  
+  - **Not Started**: tasks not yet marked in progress  
+  - **In Progress**: tasks marked as started  
+  - **Completed**: tasks finished by the user
 
-Automatic Categorization
+- **Smart Completion Rules**
+  - Only tasks in “In Progress” can be marked complete  
+  - Once **Completed**, a task never moves back to **Overdue**, even if its due time passes
 
---Overdue: tasks past their end time and not completed.
+- **Theme Switching**
+  - Toggle between **Light** and **Dark** modes from the app bar
 
---Not Started: tasks that haven’t been marked in progress.
 
-In Progress: tasks marked as started.
+### Data Models
+File: lib/models/task.dart
+class Task {
+  String id;               // Unique identifier (UUID)
+  String title;            // Short summary
+  String description;      // Detailed notes
+  DateTime dueDate;        // Calendar due date
+  TimeOfDay startTime;     // Scheduled start
+  TimeOfDay endTime;       // Scheduled end
+  bool isCompleted;        // true if task marked done
+  String status;           // “Not Started”, “In Progress”, “Completed”
 
-Completed: tasks finished by the user.
+  Task({ /* required fields + defaults */ });
 
-Smart Completion Rules
+  Map<String, dynamic> toMap() { /* convert to key/value pairs */ }
+  factory Task.fromMap(Map<String, dynamic> map) { /* restore from DB */ }
+}
+**toMap():** prepares data for SQLite (dates → strings, times → hour/minute ints, booleans as 0/1)
 
-Only tasks in “In Progress” can be marked complete.
-
-Once a task reaches “Completed,” it never moves back to “Overdue,” even if its due time passes.
-
-Theme Switching
-
-Light and dark modes, toggled via the app bar.
-
+**fromMap():** converts raw database rows back into Task objects
