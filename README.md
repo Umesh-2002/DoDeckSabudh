@@ -21,7 +21,7 @@
 
 
 ### Data Models
-File: lib/models/task.dart
+**File: lib/models/task.dart**
 
   String id;               // Unique identifier (UUID)
   String title;            // Short summary
@@ -41,3 +41,38 @@ File: lib/models/task.dart
 **toMap():** prepares data for SQLite (dates → strings, times → hour/minute ints, booleans as 0/1)
 
 **fromMap():** converts raw database rows back into Task objects
+
+###  Storage Layer
+**File: lib/services/db_helper.dart**
+
+A singleton class that wraps all SQLite operations via the sqflite plugin.
+table creation for data storage :
+CREATE TABLE tasks (
+  id TEXT PRIMARY KEY,
+  title TEXT,
+  description TEXT,
+  dueDate TEXT,
+  startHour INTEGER,
+  startMinute INTEGER,
+  endHour INTEGER,
+  endMinute INTEGER,
+  isCompleted INTEGER,
+  status TEXT
+)
+
+## CRUD methods:
+
+**insertTask(Task t)** – Inserts or overwrites using ConflictAlgorithm.replace
+
+**fetchTasks()** – Loads all rows, maps each to Task.fromMap
+
+**updateTask(Task t)** – Updates a single row by matching id
+
+**deleteTask(String id)** – Removes a task from the table
+
+Centralizes SQL so the rest of the app stays pure Dart.
+
+
+
+
+
