@@ -73,6 +73,48 @@ CREATE TABLE tasks (
 Centralizes SQL so the rest of the app stays pure Dart.
 
 
+#### State Management
+**TaskProvider (lib/providers/task_provider.dart)**
+Extends ChangeNotifier
 
+Holds a List<Task> in memory
 
+Uses DBHelper to load, add/update, and delete tasks
+
+Calls notifyListeners() so the UI rebuilds on changes
+
+**ThemeProvider (lib/providers/theme_provider.dart)**
+Holds a boolean flag isDark
+
+Toggles on user choice
+
+(Optional) Persist theme with shared_preferences
+
+#### UI Screens & Widgets
+**HomeScreen (lib/screens/home_screen.dart)**
+Calls loadTasks() in initState()
+
+Splits tasks into four sections
+// Overdue: (not completed) && (deadline.isBefore(now))
+// Completed: isCompleted || status == 'Completed'
+// In Progress: status == 'In Progress'
+// Not Started: all others
+
+--onToggle only fires if task is “In Progress”, then marks it completed
+
+---Floating action button opens AddTaskScreen
+
+**AddTaskScreen (lib/screens/add_task_screen.dart)**
+Single form for both new & existing tasks
+
+Validates required fields
+
+Returns a Task object to HomeScreen on submit
+
+**TaskCard (lib/widgets/task_card.dart)**
+Displays title, time window, and a checkbox
+
+Uses callbacks (onTap, onToggle, onDelete) for all actions
+
+No internal business logic—purely presentation
 
