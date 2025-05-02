@@ -22,7 +22,7 @@
 
 ### Data Models
 File: lib/models/task.dart
-class Task {
+
   String id;               // Unique identifier (UUID)
   String title;            // Short summary
   String description;      // Detailed notes
@@ -37,6 +37,7 @@ class Task {
   Map<String, dynamic> toMap() { /* convert to key/value pairs */ }
   factory Task.fromMap(Map<String, dynamic> map) { /* restore from DB */ }
 }
+
 **toMap():** prepares data for SQLite (dates → strings, times → hour/minute ints, booleans as 0/1)
 
 **fromMap():** converts raw database rows back into Task objects
