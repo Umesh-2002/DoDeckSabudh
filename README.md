@@ -105,16 +105,17 @@ Splits tasks into four sections
 ---Floating action button opens AddTaskScreen
 
 **AddTaskScreen (lib/screens/add_task_screen.dart)**
-Single form for both new & existing tasks
+--Single form for both new & existing tasks
 
-Validates required fields
+--Validates required fields
 
-Returns a Task object to HomeScreen on submit
+--Returns a Task object to HomeScreen on submit
 
 **TaskCard (lib/widgets/task_card.dart)**
-Displays title, time window, and a checkbox
 
-Uses callbacks (onTap, onToggle, onDelete) for all actions
+--Displays title, time window, and a checkbox
 
-No internal business logic—purely presentation
+---Uses callbacks (onTap, onToggle, onDelete) for all actions
+
+---No internal business logic—purely presentation
 
