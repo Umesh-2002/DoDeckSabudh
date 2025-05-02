@@ -96,8 +96,14 @@ Calls loadTasks() in initState()
 
 Splits tasks into four sections
 // Overdue: (not completed) && (deadline.isBefore(now))
+
+
 // Completed: isCompleted || status == 'Completed'
+
+
 // In Progress: status == 'In Progress'
+
+
 // Not Started: all others
 
 --onToggle only fires if task is “In Progress”, then marks it completed
@@ -105,6 +111,9 @@ Splits tasks into four sections
 ---Floating action button opens AddTaskScreen
 
 **AddTaskScreen (lib/screens/add_task_screen.dart)**
+
+
+
 --Single form for both new & existing tasks
 
 --Validates required fields
@@ -112,6 +121,7 @@ Splits tasks into four sections
 --Returns a Task object to HomeScreen on submit
 
 **TaskCard (lib/widgets/task_card.dart)**
+
 
 --Displays title, time window, and a checkbox
 
