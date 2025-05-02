@@ -9,9 +9,9 @@ Edit existing tasks or remove them entirely.
 
 Automatic Categorization
 
-Overdue: tasks past their end time and not completed.
+--Overdue: tasks past their end time and not completed.
 
-Not Started: tasks that haven’t been marked in progress.
+--Not Started: tasks that haven’t been marked in progress.
 
 In Progress: tasks marked as started.
 
